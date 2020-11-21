@@ -2,12 +2,13 @@ package com.cybertek.controller;
 
 import com.cybertek.dto.UserDTO;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Configuration
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -16,7 +17,6 @@ public class UserController {
     @GetMapping("/create")  //{} represent list
     public String createUser(Model model) {
         model.addAttribute("user", new UserDTO());
-//        RoleDTO r1=new RoleDTO(1L, "Admin");
         return ("/user/create");
 
     }
