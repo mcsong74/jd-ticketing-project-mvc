@@ -32,19 +32,21 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate >
+                                    <form class="needs-validation" novalidate th:action="@{/user/create}"
+                                          method="post" th:object="${user}">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="firstName">First name</label>
                                                 <input type="text" class="form-control" id="firstName" placeholder=""
-                                                       value="" required>
+                                                       value="" required th:field="*{firstname}">
                                                 <div class="invalid-feedback">
                                                     Please enter a first name !!!
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <label for="lastName">Last name</label>
-                                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                                <input type="text" class="form-control" id="lastName" placeholder=""
+                                                       value="" required th:field="*{lastName}">
                                                 <div class="invalid-feedback">
                                                     Please enter a last name !!!
                                                 </div>
@@ -60,7 +62,7 @@
                                                 </span>
                                                     </div>
                                                     <input type="text" class="form-control" id="useremail"
-                                                           placeholder="email address" required>
+                                                           placeholder="email address" required th:field="*{username}">
                                                     <div class="invalid-feedback">
                                                         Please enter an email !!!
                                                     </div>
@@ -75,7 +77,8 @@
                                                 </span>
                                                     </div>
                                                     <input type="text" class="form-control" id="userPhNum"
-                                                           placeholder="phone number" required pattern="^\d{10}">
+                                                           placeholder="phone number" required pattern="^\d{10}"
+                                                           th:field="*{phoneNumber}">
                                                     <div class="invalid-feedback">
                                                         Please enter 10 digit mobile number !!!
                                                     </div>
@@ -87,8 +90,8 @@
                                                 <label for="password">Password</label>
                                                 <div class="input-group">
                                                     <input type="password" class="form-control" id="password"
-                                                           placeholder="password"
-                                                           required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}">
+                                                           placeholder="password" th:field="*{password}"
+                                                           required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" >
                                                     <div class="invalid-feedback" style="width: 100%;">
                                                         Password not strong enough
                                                     </div>
@@ -99,7 +102,7 @@
                                                 <div class="input-group">
                     
                                                     <input type="password" class="form-control" id="confirmPassword" placeholder="re-enter password"
-                                                           required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}">
+                                                           required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}" th:field="*{password}">
                                                     <div class="invalid-feedback" style="width: 100%;">
                                                         Please re-enter password !!!
                                                     </div>
@@ -112,19 +115,23 @@
                 
                                                 <div class="custom-control custom-radio">
                                                     <input id="genderMale" name="gender" type="radio"
-                                                           class="custom-control-input" checked="" >
+                                                           class="custom-control-input" checked=""
+                                                           th:field="*{gender}" th:value="Male">
                                                     <label class="custom-control-label" for="genderMale">Male</label>
                                                 </div>
                                                 <div class="custom-control custom-radio">
-                                                    <input id="genderFemale" name="gender" type="radio" class="custom-control-input" required="">
+                                                    <input id="genderFemale" name="gender" type="radio" class="custom-control-input" required=""
+                                                           th:field="*{gender}" th:value="Female">
                                                     <label class="custom-control-label" for="genderFemale">Female</label>
                                                 </div>
             
                                             </div>
                                             <div class="col-md-5 mb-3">
                                                 <label for="role">Role</label>
-                                                <select class="custom-select d-block w-100" id="role" >
-                                                    <option value="">Choose...</option>
+                                                <select class="custom-select d-block w-100" id="role"
+                                                th:field="*{role}">
+                                                    <option th:value="" th:text="Select"></option>
+                                                    <option th:each="role:${}"></option>
                                                     <option>Admin</option>
                                                     <option>Manager</option>
                                                     <option>Employee</option>
