@@ -26,15 +26,118 @@
                             
                             <section class="panel panel-transparent">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Project Create</h2>
+                                    <h2 class="panel-title">User Create</h2>
                                 </header>
                                 
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form>
-                                    
-                                    
+                                    <form class="needs-validation" novalidate >
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="firstName">First name</label>
+                                                <input type="text" class="form-control" id="firstName" placeholder=""
+                                                       value="" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter a first name !!!
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="lastName">Last name</label>
+                                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter a last name !!!
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="useremail">Email</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-fw fas fa-at"></i>
+                                                </span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="useremail"
+                                                           placeholder="email address" required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter an email !!!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="userPhNum">Phone Number</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-fw fa-phone"></i>
+                                                </span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="userPhNum"
+                                                           placeholder="phone number" required pattern="^\d{10}">
+                                                    <div class="invalid-feedback">
+                                                        Please enter 10 digit mobile number !!!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="password">Password</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="password" placeholder="password"
+                                                           required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}">
+                                                    <div class="invalid-feedback" style="width: 100%;">
+                                                        Password not strong enough
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="confirmPassword">Password Confirmation</label>
+                                                <div class="input-group">
+                    
+                                                    <input type="text" class="form-control" id="confirmPassword" placeholder="re-enter password"
+                                                           required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}">
+                                                    <div class="invalid-feedback" style="width: 100%;">
+                                                        Please re-enter password !!!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label >Gender</label>
+                
+                                                <div class="custom-control custom-radio">
+                                                    <input id="genderMale" name="gender" type="radio"
+                                                           class="custom-control-input" checked="" >
+                                                    <label class="custom-control-label" for="genderMale">Male</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input id="genderFemale" name="gender" type="radio" class="custom-control-input" required="">
+                                                    <label class="custom-control-label" for="genderFemale">Female</label>
+                                                </div>
+            
+                                            </div>
+                                            <div class="col-md-5 mb-3">
+                                                <label for="role">Role</label>
+                                                <select class="custom-select d-block w-100" id="role" >
+                                                    <option value="">Choose...</option>
+                                                    <option>Admin</option>
+                                                    <option>Manager</option>
+                                                    <option>Employee</option>
+                                                </select>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-12">
+                                                <button class="btn btn-success btn-sm fa-pull-right" type="submit">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
                                     </form>
                                     <!-- ------------------------FORM END----------------------------- -->
                                 
@@ -62,16 +165,38 @@
                                 <div class="panel-body">
                                     <div class="table-responsive">
                                         <table class="table table-striped">
-                                            <thead>
+                                            <thead >
                                             <tr>
-                                                <th scope="col"></th>
+                                                <th>Name</th>
+                                                <th>E-Mail(username)</th>
+                                                <th>Gender</th>
+                                                <th>Phone</th>
+                                                <th>Role</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>John Doe</td>
+                                                <td>abc@test.com</td>
+                                                <td>Male</td>
+                                                <td>703-123-1234</td>
+                                                <td>Admin</td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm" type="submit">Update</button>
+                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>John Smith</td>
+                                                <td>abc123@test.com</td>
+                                                <td>Male</td>
+                                                <td>703-123-2345</td>
+                                                <td>Manager</td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm" type="submit">Update</button>
+                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
