@@ -131,8 +131,9 @@
                                                 <label for="role">Role</label>
                                                 <select class="custom-select d-block w-100" id="role"
                                                         th:field="*{role}">
-                                                    <option th:value="" th:text="Select"></option>
-                                                    <option th:each="role:${}" th:value=""  th:text=""></option>
+                                                    <option th:value="''" th:text="Select"></option>
+                                                    <option th:each="role:${rolelist}" th:value="${role.getDescription()}"
+                                                            th:text="${role.getDescription()}"></option>
 <!--                                                    <option>Admin</option>-->
 <!--                                                    <option>Manager</option> -->
 <!--                                                    <option>Employee</option>-->

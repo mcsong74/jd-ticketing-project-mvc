@@ -1,9 +1,9 @@
 package com.cybertek.service;
 
 import com.cybertek.dto.UserDTO;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 public interface UserService extends CrudService<UserDTO, String>{
     //save
     //findBy user by username
