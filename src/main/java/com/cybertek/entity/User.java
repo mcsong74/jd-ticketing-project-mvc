@@ -1,10 +1,7 @@
 package com.cybertek.entity;
 
 import com.cybertek.utils.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class User extends BaseEntity{
     private String firstName;
     private String lastName;

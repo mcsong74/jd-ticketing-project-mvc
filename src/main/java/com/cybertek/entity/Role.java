@@ -1,9 +1,6 @@
 package com.cybertek.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NegativeOrZero;
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.NegativeOrZero;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Role {
     private Long id;
     private String description;

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: header"></head>
+
+<body>
+
+<div class="dashboard-main-wrapper">
+    
+    <div th:replace="/fragments/header :: header"></div>
+    
+    <div th:replace="/fragments/left-sidebar :: left-sidebar"></div>
+    
+    <div class="dashboard-wrapper">
+        
+        <div class="dashboard-ecommerce">
+            
+            <div class="container-fluid dashboard-content">
+                
+                <div class="ecommerce-widget">
+                    
+                    <div class="row">
+                        
+                        <div class="col-lg-6 col-md-12">
+                            
+                            <section class="panel panel-transparent">
+                                <header class="panel-heading">
+                                    <h2 class="panel-title">Pending Tasks</h2>
+                                </header>
+                                
+                                <div class="panel-body">
+                                    
+                                    <!-- ------------------------FORM START----------------------------- -->
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-12">
+                                                <label for="project">Project</label>
+                                                <select class="custom-select d-block w-100" id="project" required="" disabled>
+                                                    <option value="">Select ...</option>
+                                                    <option>Human Resource CRM</option>
+                                                    <option>Infra Update</option>
+                                                </select>
+        
+                                            </div>
+                                            <div class="col-md-12 mb-12">
+                                                <label for="assignEmployee">Assigned Employee</label>
+                                                <select class="custom-select d-block w-100 " id="assignEmployee" disabled>
+                                                    <option value="">Select ...</option>
+                                                    <option>Delisa Norre</option>
+                                                    <option>Jessica Lin</option>
+                                                    <option>John Kesy</option>
+                                                    <option>Mike Smith</option>
+                                                    <option>Ozzy</option>
+                                                </select>
+        
+                                            </div>
+                                        </div>
+    
+                                        <div class="row">
+                                            <div class="col-md-12 mb-12">
+                                                <label for="taskSubject">Task Subject</label>
+                                                <input type="text" class="form-control" id="taskSubject" placeholder=""
+                                                       value="" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-12">
+                                                        <label  for="details">Details</label>
+                                                        <textarea type="text" class="form-control" id="details"
+                                                                  placeholder=""
+                                                                  value="" disabled></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" row">
+                                            <div class="col-md-12 mb-12">
+                                                <label for="status">Status</label>
+                                                <select class="custom-select d-block w-100 " id="status">
+                                                    <option value="">Select ...</option>
+                                                    <option>Open</option>
+                                                    <option>In Progress</option>
+                                                    <option>Completed</option>
+                                                    <option>Closed</option>
+                                                </select>
+        
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-12 fa-pull-right">
+                                                <button class="btn btn-success btn-sm fa-pull-right" type="button">
+                                                    Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                    
+                                    </form>
+                                    <!-- ------------------------FORM END----------------------------- -->
+                                
+                                </div>
+                            
+                            </section>
+                        
+                        </div>
+                    
+                    </div>
+                
+                </div>
+                
+                
+                
+                <!-- ------------------------TABLE START----------------------------- -->
+                
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="col-md-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    <h2 class="panel-title">Tasks List</h2>
+                                </header>
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Project</th>
+                                                <th>Task Subject</th>
+                                                <th>Assigned Employee</th>
+                                                <th>Assigned Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>PRJ001 - Human Resource CRM</td>
+                                                <td>Database Connection</td>
+                                                <td>John Kesy</td>
+                                                <td>11/01/2020 18:12</td>
+                                                <td>In Progress</td>
+                                                <td>
+                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRJ001 - Human Resource CRM</td>
+                                                <td>General Analysis</td>
+                                                <td>John Kesy</td>
+                                                <td>10/18/2020 18:12</td>
+                                                <td>Open</td>
+                                                <td>
+                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>PRJ001 - Human Resource CRM</td>
+                                                <td>Deployment Activities - Docker</td>
+                                                <td>John Kesy</td>
+                                                <td>10/23/2020 18:12</td>
+                                                <td>In Progress</td>
+                                                <td>
+                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ------------------------TABLE END----------------------------- -->
+            
+            </div>
+        
+        </div>
+    
+    </div>
+    
+    <div th:replace="/fragments/footer :: footer"></div>
+
+</div>
+
+<div th:replace="/fragments/javascript :: js"></div>
+
+</body>
+
+</html>
