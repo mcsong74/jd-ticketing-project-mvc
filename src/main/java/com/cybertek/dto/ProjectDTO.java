@@ -14,5 +14,6 @@ public class ProjectDTO {
     private String assignedManager;
     private String startDate;
     private String endDate;
+    private String projectDetails;
 
 }

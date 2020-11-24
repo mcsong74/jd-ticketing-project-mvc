@@ -33,20 +33,20 @@
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <form class="needs-validation" novalidate th:action="@{/project/create}"
-                                          method="post">
+                                          method="post" th:object="${project}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="projectname">Project Name</label>
-                                                <input type="text" class="form-control" id="projectname" placeholder=""
-                                                       value="" required>
+                                                <input type="text" class="form-control" id="projectname"
+                                                       th:field="*{projectName}" required>
                                                 <div class="invalid-feedback">
                                                     Valid first name is required.
                                                 </div>
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="projectcode">Project Code</label>
-                                                <input type="text" class="form-control" id="projectcode" placeholder=""
-                                                       value="" required>
+                                                <input type="text" class="form-control" id="projectcode"
+                                                       th:field="*{projectCode}" required>
                                                 <div class="invalid-feedback">
                                                     Valid last name is required.
                                                 </div>
@@ -58,9 +58,13 @@
                                                 <label for="role">Assigned Manager</label>
                                                 <select class="custom-select d-block w-100" id="role" required>
                                                     <option value="">Select ...</option>
-                                                    <option>Manager 1</option>
-                                                    <option>Manager 2</option>
-                                                    <option>Manager 3</option>
+                                                    <option th:each="manager:${managerList}"
+                                                            th:value="${manager}"
+                                                            th:text="${manager.firstName+' '+manager.lastName}">
+                                                    </option>
+<!--                                                    <option>Manager 1</option>-->
+<!--                                                    <option>Manager 2</option>-->
+<!--                                                    <option>Manager 3</option>-->
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a valid manager.
@@ -71,14 +75,14 @@
                                             <div class="col-md-6 mb-6">
                                                 <label for="startdate">Project Start Date</label>
                                                 
-                                                <input id="startdate" type="date" required>
+                                                <input id="startdate" type="date" th:field="*{startDate}" required>
                                                 <div class="invalid-feedback">
                                                     Project start date is required field.
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-6 ">
                                                 <label for="enddate">Project End Date</label>
-                                                <input id="enddate" type="date" required>
+                                                <input id="enddate" type="date" th:field="*{endDate}" required>
                                                 <div class="invalid-feedback">
                                                     Project end date is required field.
                                                 </div>
@@ -89,8 +93,7 @@
                                                     <div class="col-md-12 mb-12">
                                                         <label for="projectDetails">Project Details</label>
                                                         <textarea type="text" class="form-control" id="projectDetails"
-                                                                  placeholder=""
-                                                                  value="" required></textarea><br>
+                                                                  th:field="*{projectDetails}"required></textarea><br>
                                                         <div class="invalid-feedback">
                                                             Project details is required field.
                                                         </div>
@@ -101,8 +104,7 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-12 mb-12 fa-pull-right">
-                                                        <button class="btn btn-success btn-sm fa-pull-right"
-                                                                type="button">
+                                                        <button class="btn btn-success btn-sm fa-pull-right" type="submit">
                                                             Save
                                                         </button>
                                                     </div>
