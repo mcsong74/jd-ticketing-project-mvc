@@ -5,6 +5,7 @@ import com.cybertek.dto.UserDTO;
 import com.cybertek.entity.User;
 import com.cybertek.service.RoleService;
 import com.cybertek.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +19,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+//    @Autowired
     RoleService roleService;
+//    @Autowired
     UserService userService;
 
     public UserController(RoleService roleService, UserService userService) {
