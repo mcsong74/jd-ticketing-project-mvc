@@ -186,28 +186,28 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>John Doe</td>
-                                                <td>abc@test.com</td>
-                                                <td>Male</td>
-                                                <td>703-123-1234</td>
-                                                <td>Admin</td>
+                                            <tr th:each="user:${userlist}">
+                                                <td th:text="${user.firstName+' '+user.lastName}">John Doe</td>
+                                                <td th:text="${user.userName}">abc@test.com</td>
+                                                <td th:text="${user.gender}">Male</td>
+                                                <td th:text="${user.phone}">703-123-1234</td>
+                                                <td th:text="${user.role.getDescription()}">Admin</td>
                                                 <td>
                                                     <button class="btn btn-info btn-sm" type="submit">Update</button>
                                                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>John Smith</td>
-                                                <td>abc123@test.com</td>
-                                                <td>Male</td>
-                                                <td>703-123-2345</td>
-                                                <td>Manager</td>
-                                                <td>
-                                                    <button class="btn btn-info btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                </td>
-                                            </tr>
+<!--                                            <tr>-->
+<!--                                                <td>John Smith</td>-->
+<!--                                                <td>abc123@test.com</td>-->
+<!--                                                <td>Male</td>-->
+<!--                                                <td>703-123-2345</td>-->
+<!--                                                <td>Manager</td>-->
+<!--                                                <td>-->
+<!--                                                    <button class="btn btn-info btn-sm" type="submit">Update</button>-->
+<!--                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
                                             </tbody>
                                         </table>
                                     </div>
