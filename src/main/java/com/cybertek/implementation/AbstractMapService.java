@@ -31,4 +31,8 @@ public abstract class AbstractMapService<T, ID> {
     }
 
 
+    void update(ID id, T object){
+        map.replace(id, object);
+    }
+
 }

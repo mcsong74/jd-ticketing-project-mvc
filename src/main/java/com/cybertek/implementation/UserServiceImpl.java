@@ -14,6 +14,13 @@ public class UserServiceImpl extends AbstractMapService<UserDTO, String> impleme
         return super.findAll();
     }
 
+
+
+    @Override
+    public void update(String id, UserDTO object) {
+        super.update(id, object);
+    }
+
     @Override
     public void deleteById(String userId) {
         super.deleteById(userId);
