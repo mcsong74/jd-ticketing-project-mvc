@@ -34,19 +34,18 @@ public class UserController {
         model.addAttribute("user", new UserDTO());
         model.addAttribute("rolelist",roleService.findAll());
         model.addAttribute("userlist", userService.findAll());
+
         return ("/user/create");
 
     }
 
 
 
-//    @PostMapping("/create")
-//    public String listUser(@ModelAttribute("user") UserDTO user){
-//        roleService.save(user.getRole());
-//        userService.save(user);
-//        userService.findAll().stream().forEach(u -> System.out.println(u.toString()));
-//
-//        return("/user/create");
-//    }
+    @PostMapping("/submit")
+    public String listUser(UserDTO user, RoleDTO role, Model model){
+        System.out.println("user.getFirstName() = " + user.getFirstName());
+        System.out.println(user.toString());
+        return("/user/submit");
+    }
 
 }

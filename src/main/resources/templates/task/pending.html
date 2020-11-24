@@ -32,7 +32,8 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form>
+                                    <form class="needs-validation" novalidate th:action="@{/task/pending}"
+                                          method="post">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
@@ -79,20 +80,23 @@
                                         <div class=" row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="status">Status</label>
-                                                <select class="custom-select d-block w-100 " id="status">
+                                                <select class="custom-select d-block w-100 " id="status" required>
                                                     <option value="">Select ...</option>
                                                     <option>Open</option>
                                                     <option>In Progress</option>
                                                     <option>Completed</option>
                                                     <option>Closed</option>
                                                 </select>
+                                                <div class="invalid-feedback">
+                                                    Status is required field, please select Status.
+                                                </div>
         
                                             </div>
                                         </div>
                                         <br>
                                         <div class="row">
                                             <div class="col-md-12 mb-12 fa-pull-right">
-                                                <button class="btn btn-success btn-sm fa-pull-right" type="button">
+                                                <button class="btn btn-success btn-sm fa-pull-right" type="submit">
                                                     Save
                                                 </button>
                                             </div>

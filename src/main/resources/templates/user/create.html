@@ -32,7 +32,7 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{/user/create}" method="post"
+                                    <form class="needs-validation" novalidate th:action="@{/user/submit}" method="post"
                                     th:object="${user}">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
@@ -130,13 +130,11 @@
                                             <div class="col-md-5 mb-3">
                                                 <label for="role">Role</label>
                                                 <select class="custom-select d-block w-100" id="role"
-                                                        th:field="*{role}">
+                                                        th:field="*{role.id}">
                                                     <option th:value="''" th:text="Select"></option>
-                                                    <option th:each="role:${rolelist}" th:value="${role.getDescription()}"
-                                                            th:text="${role.getDescription()}"></option>
-<!--                                                    <option>Admin</option>-->
-<!--                                                    <option>Manager</option> -->
-<!--                                                    <option>Employee</option>-->
+                                                    <option th:each="selectRole:${rolelist}"
+                                                            th:value="${selectRole.id}"
+                                                            th:text="${selectRole.getDescription()}"></option>
                                                 </select>
                                                 
                                             </div>

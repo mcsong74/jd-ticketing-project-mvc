@@ -50,7 +50,7 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user4);
         userService.save(user5);
 
-        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));
+//        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));
 //        UserDTO user6 = new UserDTO("Delisa",
 //                "Norre", "T001@cybertek.com", "123Update", true, "8567412358", managerRole, Gender.FEMALE);
 //        userService.update(user6.getUserName(), user6);

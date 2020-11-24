@@ -32,20 +32,22 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form>
+                                    <form class="needs-validation" novalidate th:action="@{/task/create}" method="post">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
-                                                <select class="custom-select d-block w-100" id="project" required="">
+                                                <select class="custom-select d-block w-100" id="project" required>
                                                     <option value="">Select ...</option>
                                                     <option>Human Resource CRM</option>
                                                     <option>Infra Update</option>
                                                 </select>
-                                            
+                                                <div class="invalid-feedback">
+                                                    Please select a project.
+                                                </div>
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
-                                                <select class="custom-select d-block w-100 " id="assignEmployee">
+                                                <select class="custom-select d-block w-100 " id="assignEmployee" required>
                                                     <option value="">Select ...</option>
                                                     <option>Delisa Norre</option>
                                                     <option>Jessica Lin</option>
@@ -53,6 +55,9 @@
                                                     <option>Mike Smith</option>
                                                     <option>Ozzy</option>
                                                 </select>
+                                                <div class="invalid-feedback">
+                                                    Please select an employee to assign.
+                                                </div>
                                             
                                             </div>
                                         </div>
@@ -60,8 +65,10 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="taskSubject">Task Subject</label>
-                                                <input type="text" class="form-control" id="taskSubject" placeholder=""
-                                                       value="" required="">
+                                                <input type="text" class="form-control" id="taskSubject" required>
+                                                <div class="invalid-feedback">
+                                                   Please enter a task subject.
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -70,8 +77,10 @@
                                                     <div class="col-md-12 mb-12">
                                                         <label for="details">Details</label>
                                                         <textarea type="text" class="form-control" id="details"
-                                                                  placeholder=""
-                                                                  value="" required=""></textarea>
+                                                                   required></textarea>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a details.
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,7 +89,7 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-md-12 mb-12 fa-pull-right">
-                                                <button class="btn btn-success btn-sm fa-pull-right" type="button">
+                                                <button class="btn btn-success btn-sm fa-pull-right" type="submit">
                                                     Save
                                                 </button>
                                             </div>
