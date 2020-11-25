@@ -44,11 +44,16 @@ public class UserController {
 
 
 
-    @PostMapping("/submit")
-    public String listUser(UserDTO user, RoleDTO role, Model model){
-        System.out.println("user.getFirstName() = " + user.getFirstName());
-        System.out.println(user.toString());
-        return("/user/submit");
+    @PostMapping("/create")
+    public String insertUser(UserDTO user,  Model model){
+
+        userService.save(user);
+
+        //user, rolelist, userlist object need to pass to view
+        model.addAttribute("user", new UserDTO()); //is for new form after hit save button
+        model.addAttribute("rolelist", roleService.findAll());
+        model.addAttribute("userlist", userService.findAll());
+        return("/user/create");
     }
 
 }
