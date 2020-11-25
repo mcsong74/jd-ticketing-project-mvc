@@ -32,8 +32,8 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{/user/create}" method="post"
-                                    th:object="${user}">
+                                    <form class="needs-validation" novalidate th:action="@{/user/update/{id}(id=${user.userName})}" method="post"
+                                          th:object="${user}">
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label for="firstName">First name</label>
@@ -100,7 +100,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <label for="confirmPassword">Password Confirmation</label>
                                                 <div class="input-group">
-                    
+                                                    
                                                     <input type="password" class="form-control" id="confirmPassword" placeholder="re-enter password"
                                                            required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
                                                            th:field="*{password}">
@@ -113,7 +113,7 @@
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
                                                 <label >Gender</label>
-                
+                                                
                                                 <div class="custom-control custom-radio">
                                                     <input id="genderMale" name="gender" type="radio"
                                                            class="custom-control-input" checked=""
@@ -125,18 +125,19 @@
                                                            th:field="*{gender}" th:value="FEMALE">
                                                     <label class="custom-control-label" for="genderFemale">Female</label>
                                                 </div>
-            
+                                            
                                             </div>
                                             <div class="col-md-5 mb-3">
                                                 <label for="role">Role</label>
-                                                <select class="custom-select d-block w-100" id="role"
-                                                        th:field="*{role}">
+                                                <select class="custom-select d-block w-100" id="role">
                                                     <option th:value="''" th:text="Select"></option>
                                                     <option th:each="selectRole:${rolelist}"
                                                             th:value="${selectRole.id}"
-                                                            th:text="${selectRole.getDescription()}"></option>
+                                                            th:text="${selectRole.getDescription()}"
+                                                            th:selected="${selectRole.id.equals(user.role.id)}"></option>
+<!--                                                                    "${role.id}==${user.role.id}"       -->
                                                 </select>
-                                                
+                                            
                                             </div>
                                         </div>
                                         <div class="row">
@@ -191,13 +192,14 @@
                                                 <td th:text="${user.phone}"></td>
                                                 <td th:text="${user.role.description}"></td>
                                                 <td>
-                                                    <a th:href="@{/user/update/{id}(id=${user.userName})}">
+                                                    <a href="">
                                                         <button class="btn btn-info btn-sm" type="submit">Update</button>
                                                     </a>
-                                                
+                                                    
                                                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                                                 </td>
                                             </tr>
+                                            
                                             </tbody>
                                         </table>
                                     </div>

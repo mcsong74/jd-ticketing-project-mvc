@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,8 +39,6 @@ public class UserController {
 
     }
 
-
-
     @PostMapping("/create")
     public String insertUser(UserDTO user,  Model model){
 
@@ -56,4 +51,20 @@ public class UserController {
         return("/user/create");
     }
 
+    @GetMapping("/update/{username}")
+    public String editUser(@PathVariable("username") String username, Model model){
+        model.addAttribute("user", userService.findById(username));
+        model.addAttribute("userlist", userService.findAll());
+        model.addAttribute("rolelist", roleService.findAll());
+        return "/user/update";
+    }
+    @PostMapping("/update/{username}")
+    public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
+        userService.updateByObj(user);
+
+        model.addAttribute("user", new UserDTO()); //is for new form after hit save button
+        model.addAttribute("rolelist", roleService.findAll());
+        model.addAttribute("userlist", userService.findAll());
+        return "/user/create";
+    }
 }

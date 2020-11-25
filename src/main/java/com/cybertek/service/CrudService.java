@@ -9,5 +9,5 @@ public interface CrudService<T, ID> { //generic
     void delete(T object);
     void deleteById(ID id);
     void update(ID id, T object);
-
+    void updateByObj(T object);
 }
