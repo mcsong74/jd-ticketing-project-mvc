@@ -26,10 +26,14 @@ public class ProjectController {
     @GetMapping("/create")
     public String createProject(Model model){
         model.addAttribute("project", new ProjectDTO());
-        List<UserDTO> managerList=userService.findAll().stream()
+//        List<UserDTO> managerList=userService.findAll().stream()
+//                .filter(user->user.getRole().getDescription().equals("Manager"))
+//                .collect(Collectors.toList());
+//        model.addAttribute("managerList", managerList);
+        model.addAttribute("managerList", userService.findAll().stream()
                 .filter(user->user.getRole().getDescription().equals("Manager"))
-                .collect(Collectors.toList());
-        model.addAttribute("managerList", managerList);
+                .collect(Collectors.toList()));
+
         return "/project/create";
     }
 

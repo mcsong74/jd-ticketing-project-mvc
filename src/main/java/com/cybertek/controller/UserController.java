@@ -29,7 +29,7 @@ public class UserController {
     //    @GetMapping({"/create", "/add", "initialize"})  //{} represent list
     @GetMapping("/create")  //{} represent list
     public String createUser(Model model) {
-        userService.findAll().stream().forEach(user -> System.out.println(user.toString()));
+//        userService.findAll().stream().forEach(user -> System.out.println(user.toString()));
 //        System.out.println(userService.findAll().toString());
         model.addAttribute("user", new UserDTO());
         model.addAttribute("rolelist",roleService.findAll());
