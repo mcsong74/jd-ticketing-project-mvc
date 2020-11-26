@@ -1,5 +1,6 @@
 package com.cybertek.dto;
 
+import com.cybertek.utils.Status;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +12,10 @@ import org.springframework.stereotype.Component;
 public class ProjectDTO {
     private String projectName;
     private String projectCode;
-    private String assignedManager;
+    private UserDTO assignedManager;
     private String startDate;
     private String endDate;
     private String projectDetails;
+    private Status projectStatus;
 
 }
