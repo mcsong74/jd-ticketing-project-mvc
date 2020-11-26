@@ -41,7 +41,7 @@ public class DataGenerator implements CommandLineRunner {
         roleService.save(employeeRole);
 
         UserDTO user1 = new UserDTO("John", "Kesy",
-                "admin@cybertek.com", "abc", true, "7459684532", adminRole, Gender.MALE);
+                "admin@cybertek.com", "abc", true, "7459684532", managerRole, Gender.MALE);
         UserDTO user5 = new UserDTO("John", "Kesy",
                 "admin2@cybertek.com", "abc", true, "7459684532", adminRole, Gender.MALE);
         UserDTO user2 = new UserDTO("Delisa",
