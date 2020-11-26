@@ -194,8 +194,9 @@
                                                     <a th:href="@{/user/update/{id}(id=${user.userName})}">
                                                         <button class="btn btn-info btn-sm" type="submit">Update</button>
                                                     </a>
-                                                
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                    <a th:href="@{/user/delete/{id}(id=${user.userName})}">
+                                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             </tbody>

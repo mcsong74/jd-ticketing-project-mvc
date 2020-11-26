@@ -45,10 +45,10 @@ public class UserController {
         userService.save(user);
 
         //user, rolelist, userlist object need to pass to view
-        model.addAttribute("user", new UserDTO()); //is for new form after hit save button
-        model.addAttribute("rolelist", roleService.findAll());
-        model.addAttribute("userlist", userService.findAll());
-        return("/user/create");
+//        model.addAttribute("user", new UserDTO()); //is for new form after hit save button
+//        model.addAttribute("rolelist", roleService.findAll());
+//        model.addAttribute("userlist", userService.findAll());
+        return("redirect:/user/create"); //redirect and removed redundancy of same code block
     }
 
     @GetMapping("/update/{username}")
@@ -62,9 +62,16 @@ public class UserController {
     public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
         userService.updateByObj(user);
 
-        model.addAttribute("user", new UserDTO()); //is for new form after hit save button
-        model.addAttribute("rolelist", roleService.findAll());
-        model.addAttribute("userlist", userService.findAll());
-        return "/user/create";
+//        model.addAttribute("user", new UserDTO()); //is for new form after hit save button
+//        model.addAttribute("rolelist", roleService.findAll());
+//        model.addAttribute("userlist", userService.findAll());
+        return "redirect:/user/create";
     }
+
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username){
+        userService.deleteById(username);
+        return "redirect:/user/create";
+    }
+
 }
