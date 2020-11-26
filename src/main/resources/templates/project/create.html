@@ -150,7 +150,7 @@
                                                 <td th:text="${aProject.projectCode}"></td>
                                                 <td th:text="${aProject.projectName}"></td>
                                                 <td th:text="${aProject.startDate+'-'+aProject.endDate}"></td>
-                                                <td th:text="${aProject.assignedManager}"></td>
+                                                <td th:text="${aProject.assignedManager.firstName+' '+aProject.assignedManager.lastName}"></td>
                                                 <td th:text="${aProject.projectStatus}"></td>
                                                 <td>
                                                     <a href="">
