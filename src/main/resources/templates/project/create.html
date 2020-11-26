@@ -90,7 +90,7 @@
                                                     <div class="col-md-12 mb-12">
                                                         <label for="projectDetails">Project Details</label>
                                                         <textarea type="text" class="form-control" id="projectDetails"
-                                                                  th:field="*{projectDetails}"required></textarea><br>
+                                                                  th:field="*{projectDetails}" required></textarea><br>
                                                         <div class="invalid-feedback">
                                                             Project details is required field.
                                                         </div>
@@ -101,7 +101,8 @@
                                             <div class="container">
                                                 <div class="row">
                                                     <div class="col-md-12 mb-12 fa-pull-right">
-                                                        <button class="btn btn-success btn-sm fa-pull-right" type="submit">
+                                                        <button class="btn btn-success btn-sm fa-pull-right"
+                                                                type="submit">
                                                             Save
                                                         </button>
                                                     </div>
@@ -145,30 +146,26 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>PRJ001</td>
-                                                <td>Human Resource CRM</td>
-                                                <td>11.03.2020-11.09.2020</td>
-                                                <td>Delisa Norre</td>
-                                                <td>In Progress</td>
+                                            <tr th:each="aProject:${projectlist}">
+                                                <td th:text="${aProject.projectCode}"></td>
+                                                <td th:text="${aProject.projectName}"></td>
+                                                <td th:text="${aProject.startDate+'-'+aProject.endDate}"></td>
+                                                <td th:text="${aProject.assignedManager}"></td>
+                                                <td th:text="${aProject.projectStatus}"></td>
                                                 <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                    <button class="btn btn-info btn-sm" type="submit">Compelete</button>
+                                                    <a href="">
+                                                        <button class="btn btn-warning btn-sm" type="submit">Update</button>
+                                                    </a>
+                                                    <a href="">
+                                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                    </a>
+                                                    <a href="">
+                                                        <button class="btn btn-info btn-sm" type="submit">Compelete</button>
+                                                    </a>
+                                                
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>PRJ002</td>
-                                                <td>Infra Update</td>
-                                                <td>11.03.2020-11.06.2020</td>
-                                                <td>Craig Jark</td>
-                                                <td>UAT Testing</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                    <button class="btn btn-info btn-sm" type="submit">Compelete</button>
-                                                </td>
-                                            </tr>
+                                            
                                             </tbody>
                                         </table>
                                     </div>

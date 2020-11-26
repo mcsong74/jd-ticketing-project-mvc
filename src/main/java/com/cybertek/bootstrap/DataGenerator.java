@@ -66,6 +66,7 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project1);
         projectService.save(project2);
         projectService.save(project3);
+
         //        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));
 //        UserDTO user6 = new UserDTO("Delisa",
 //                "Norre", "T001@cybertek.com", "123Update", true, "8567412358", managerRole, Gender.FEMALE);
