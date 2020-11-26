@@ -30,9 +30,11 @@ public class ProjectController {
 //                .filter(user->user.getRole().getDescription().equals("Manager"))
 //                .collect(Collectors.toList());
 //        model.addAttribute("managerList", managerList);
+        model.addAttribute("project", new ProjectDTO());
         model.addAttribute("managerList", userService.findAll().stream()
                 .filter(user->user.getRole().getDescription().equals("Manager"))
                 .collect(Collectors.toList()));
+        model.addAttribute("projectlist", projectService.findAll());
 
         return "/project/create";
     }

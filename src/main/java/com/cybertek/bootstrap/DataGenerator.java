@@ -1,14 +1,19 @@
 package com.cybertek.bootstrap;
 
+import com.cybertek.dto.ProjectDTO;
 import com.cybertek.dto.RoleDTO;
 import com.cybertek.dto.UserDTO;
 import com.cybertek.implementation.RoleServiceImpl;
+import com.cybertek.service.ProjectService;
 import com.cybertek.service.RoleService;
 import com.cybertek.service.UserService;
 import com.cybertek.utils.Gender;
+import com.cybertek.utils.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
@@ -16,10 +21,12 @@ public class DataGenerator implements CommandLineRunner {
 //    RoleServiceImpl roleService;
     RoleService roleService; //always bind through interface
     UserService userService;
+    ProjectService projectService;
 
-    public DataGenerator(RoleService roleService, UserService userService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     @Override
@@ -50,7 +57,16 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user4);
         userService.save(user5);
 
-//        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));
+        ProjectDTO project1=new ProjectDTO("Spring MVC", "PRJ001", user2, LocalDate.now(),
+                LocalDate.now().plusDays(25),"Spring MVC Project - creating controller", Status.OPEN);
+        ProjectDTO project2=new ProjectDTO("Spring ORM", "PRJ002", user1, LocalDate.now(),
+                LocalDate.now().plusDays(35),"Spring MVC Project - creating Database", Status.IN_PROGRESS);
+        ProjectDTO project3=new ProjectDTO("Spring Container", "PRJ002", user2, LocalDate.now(),
+                LocalDate.now().plusDays(60),"Spring MVC Project - creating Database", Status.UAT_TEST);
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
+        //        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));
 //        UserDTO user6 = new UserDTO("Delisa",
 //                "Norre", "T001@cybertek.com", "123Update", true, "8567412358", managerRole, Gender.FEMALE);
 //        userService.update(user6.getUserName(), user6);
