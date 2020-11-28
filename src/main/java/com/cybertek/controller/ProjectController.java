@@ -69,7 +69,7 @@ public class ProjectController {
     public String updateProject(@PathVariable("projectcode") String projectcode, ProjectDTO project){
         project.setProjectStatus(projectService.findById(projectcode).getProjectStatus());
         projectService.updateByObj(project);
-
+        //redirect replaced below commented
 //        model.addAttribute("project", new ProjectDTO());
 //        model.addAttribute("managerlist", userService.findAll().stream()
 //                .filter(user->user.getRole().getDescription().equals("Manager"))
@@ -80,7 +80,8 @@ public class ProjectController {
 
     @GetMapping("/complete/{projectcode}")
     public String completeProject(@PathVariable("projectcode") String projectcode){
-        projectService.findById(projectcode).setProjectStatus(Status.COMPLETE);
+//        projectService.findById(projectcode).setProjectStatus(Status.COMPLETE);
+        projectService.complete(projectService.findById(projectcode));
         return "redirect:/project/create";
     }
 
