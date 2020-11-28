@@ -7,6 +7,7 @@ import com.cybertek.dto.UserDTO;
 import com.cybertek.implementation.RoleServiceImpl;
 import com.cybertek.service.ProjectService;
 import com.cybertek.service.RoleService;
+import com.cybertek.service.TaskService;
 import com.cybertek.service.UserService;
 import com.cybertek.utils.Gender;
 import com.cybertek.utils.Status;
@@ -24,11 +25,13 @@ public class DataGenerator implements CommandLineRunner {
     RoleService roleService; //always bind through interface
     UserService userService;
     ProjectService projectService;
-
-    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
+    TaskService taskService;
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService,
+                         TaskService taskService) {
         this.roleService = roleService;
         this.userService = userService;
         this.projectService = projectService;
+        this.taskService=taskService;
     }
 
     @Override
@@ -64,16 +67,23 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project2);
         projectService.save(project3);
 
-        TaskDTO task1= new TaskDTO("Task001", project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18,12),
+        TaskDTO task1= new TaskDTO("TASK-001", project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01,
+                18,12),
                 Status.IN_PROGRESS, "Task assigned for project 1");
-        TaskDTO task2= new TaskDTO("Task002", project2, "Server LAN Setting", user2, LocalDateTime.of(2020, 11, 02, 18,12),
+        TaskDTO task2= new TaskDTO("TASK-002", project2, "Server LAN Setting", user2, LocalDateTime.of(2020, 11, 02, 18,12),
                 Status.UAT_TEST  ,"Task assigned for project 1");
-        TaskDTO task3= new TaskDTO("Task003",project1, "REST Codes Development", user1, LocalDateTime.of(2020, 10, 18, 18, 12),
+        TaskDTO task3= new TaskDTO("TASK-003",project1, "REST Codes Development", user1, LocalDateTime.of(2020, 10, 18, 18, 12),
                  Status.COMPLETE   ,"Task assigned for project 1");
-        TaskDTO task4= new TaskDTO("Task004",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
+        TaskDTO task4= new TaskDTO("TASK-004",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
                  Status.OPEN  ,"Task assigned for project 1");
-        TaskDTO task5= new TaskDTO("Task005",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
+        TaskDTO task5= new TaskDTO("TASK-005",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
                  Status.COMPLETE ,"Task assigned for project 1");
+
+        taskService.save(task1);
+        taskService.save(task2);
+        taskService.save(task3);
+        taskService.save(task4);
+        taskService.save(task5);
 
 
         //        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));

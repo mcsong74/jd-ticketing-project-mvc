@@ -33,17 +33,18 @@
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <form class="needs-validation" novalidate th:action="@{/task/create}" method="post"
-                                    th:object="${task}">
+                                          th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
-                                                <select class="custom-select d-block w-100" id="project" name="project" required
-                                                    th:field="*{project}">
+                                                <select class="custom-select d-block w-100" id="project" name="project"
+                                                        required
+                                                        th:field="*{project}">
                                                     <option value="">Select ...</option>
                                                     <option th:each="project:${projectlist}"
-                                                    th:value="${project.projectCode}"
-                                                    th:text="${project.projectCode+' - '+project.projectName}"></option>
-                                                    
+                                                            th:value="${project.projectCode}"
+                                                            th:text="${project.projectCode+' - '+project.projectName}"></option>
+                                                
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a project.
@@ -51,12 +52,13 @@
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
-                                                <select class="custom-select d-block w-100 " id="assignEmployee" name="assignEmployee" required
-                                                    th:field="*{assignedEmployee}">
+                                                <select class="custom-select d-block w-100 " id="assignEmployee"
+                                                        name="assignEmployee" required
+                                                        th:field="*{assignedEmployee}">
                                                     <option value="">Select ...</option>
                                                     <option th:each="user:${employeelist}" th:value="${user.userName}"
-                                                    th:text="${user.firstName+' '+user.lastName+' ('+user.role.description+')'}"></option>
-                                                    
+                                                            th:text="${user.firstName+' '+user.lastName+' ('+user.role.description+')'}"></option>
+                                                
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select an employee to assign.
@@ -69,9 +71,9 @@
                                             <div class="col-md-12 mb-12">
                                                 <label for="taskSubject">Task Subject</label>
                                                 <input type="text" class="form-control" id="taskSubject" required
-                                                th:field="*{taskSubject}">
+                                                       th:field="*{taskSubject}">
                                                 <div class="invalid-feedback">
-                                                   Please enter a task subject.
+                                                    Please enter a task subject.
                                                 </div>
                                             </div>
                                         </div>
@@ -81,7 +83,7 @@
                                                     <div class="col-md-12 mb-12">
                                                         <label for="details">Details</label>
                                                         <textarea type="text" class="form-control" id="details" required
-                                                            th:field="*{details}"></textarea>
+                                                                  th:field="*{details}"></textarea>
                                                         <div class="invalid-feedback">
                                                             Please enter a details.
                                                         </div>
@@ -128,71 +130,28 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th >Project</th>
-                                                <th >Task Subject</th>
-                                                <th >Assigned Employee</th>
-                                                <th >Assigned Date</th>
-                                                <th >Status</th>
-                                                <th >Action</th>
+                                                <th>Project</th>
+                                                <th>Task Subject</th>
+                                                <th>Assigned Employee</th>
+                                                <th>Assigned Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr th:each="task:${tasklist}">
+                                                <td th:text="${task.taskId}" hidden="true"></td>
                                                 <td th:text="${task.project.projectCode+' - '+task.project.projectName}"></td>
-                                                <td th:text="${task.taskSubject}">Database Connection</td>
+                                                <td th:text="${task.taskSubject}"></td>
                                                 <td th:text="${task.assignedEmployee.firstName+' '+task.assignedEmployee.lastName}"></td>
                                                 <td th:text="${task.assignedDate}"></td>
                                                 <td th:text="${task.status.getValue()}"></td>
                                                 <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                    <a href="" class="btn btn-warning btn-sm" type="submit">Update</a>
+                                                    <a href="" class="btn btn-danger btn-sm" type="submit">Delete</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>PRJ002 - Infra Update</td>
-                                                <td>Server LAN Settings</td>
-                                                <td>Delisa Norre</td>
-                                                <td>11/02/2020 18:12</td>
-                                                <td>UAT Testing</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>REST Codes Development</td>
-                                                <td>John Kesy</td>
-                                                <td>10/18/2020 18:12</td>
-                                                <td>Completed</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>General Analysis</td>
-                                                <td>John Kesy</td>
-                                                <td>10/18/2020 18:12</td>
-                                                <td>Open</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>Environment Setup</td>
-                                                <td>John Kesy</td>
-                                                <td>10/11/2020 18:12</td>
-                                                <td>Completed</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                                </td>
-                                            </tr>
+                                            
                                             </tbody>
                                         </table>
                                     </div>
