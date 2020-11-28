@@ -80,23 +80,36 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project2);
         projectService.save(project3);
 
-        TaskDTO task1= new TaskDTO("TASK-001", project1, "Database Connection", user4, LocalDateTime.of(2020, 11, 01,
-                18,12),
-                Status.IN_PROGRESS, "Task assigned for project 1");
-        TaskDTO task2= new TaskDTO("TASK-002", project2, "Server LAN Setting", user2, LocalDateTime.of(2020, 11, 02, 18,12),
-                Status.UAT_TEST  ,"Task assigned for project 1");
-        TaskDTO task3= new TaskDTO("TASK-003",project1, "REST Codes Development", user1, LocalDateTime.of(2020, 10, 18, 18, 12),
-                 Status.COMPLETE   ,"Task assigned for project 1");
-        TaskDTO task4= new TaskDTO("TASK-004",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
-                 Status.OPEN  ,"Task assigned for project 1");
-        TaskDTO task5= new TaskDTO("TASK-005",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
-                 Status.COMPLETE ,"Task assigned for project 1");
-
+        TaskDTO task1 = new TaskDTO(1L,project1,"Controller",user8,LocalDate.now().minusDays(4),Status.IN_PROGRESS,"Request Mapping");
+        TaskDTO task2 = new TaskDTO(2L,project3,"Configuration",user3,LocalDate.now().minusDays(12),Status.COMPLETE,"Database Connnection");
+        TaskDTO task3 = new TaskDTO(3L,project3,"Mapping",user6,LocalDate.now().minusDays(8),Status.IN_PROGRESS,"One-To-Many");
+        TaskDTO task4 = new TaskDTO(4L,project2,"Dependency Injection",user7,LocalDate.now().minusDays(20),Status.UAT_TEST,"Autowired");
         taskService.save(task1);
         taskService.save(task2);
         taskService.save(task3);
         taskService.save(task4);
-        taskService.save(task5);
+
+//        TaskDTO task1= new TaskDTO(1l, project1, "Database Connection", user6, LocalDateTime.of(2020, 11, 01,
+//                18,12),
+//                Status.IN_PROGRESS, "Task assigned for project 1");
+//        TaskDTO task2= new TaskDTO(2l, project2, "Server LAN Setting", user6, LocalDateTime.of(2020, 11, 02,
+//                18,12),
+//                Status.UAT_TEST  ,"Task assigned for project 1");
+//        TaskDTO task3= new TaskDTO(3l,project1, "REST Codes Development", user7, LocalDateTime.of(2020, 10,
+//                18, 18, 12),
+//                 Status.COMPLETE   ,"Task assigned for project 1");
+//        TaskDTO task4= new TaskDTO(4l,project1, "Database Connection", user8, LocalDateTime.of(2020, 11, 01,
+//                18, 12),
+//                 Status.OPEN  ,"Task assigned for project 1");
+//        TaskDTO task5= new TaskDTO(5l,project1, "Database Connection", user7, LocalDateTime.of(2020, 11, 01,
+//                18, 12),
+//                 Status.COMPLETE ,"Task assigned for project 1");
+//
+//        taskService.save(task1);
+//        taskService.save(task2);
+//        taskService.save(task3);
+//        taskService.save(task4);
+//        taskService.save(task5);
 
 
         //        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));

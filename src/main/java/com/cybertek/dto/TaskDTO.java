@@ -4,6 +4,7 @@ import com.cybertek.utils.Status;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -12,12 +13,12 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class TaskDTO {
-    private String taskId;
+    private Long Id;
     private ProjectDTO project;
     private String taskSubject;
     private UserDTO assignedEmployee;
     @DateTimeFormat(pattern = "MM/dd/yyyy hh:mm")
-    LocalDateTime assignedDate;
+    LocalDate assignedDate;
     private Status status;
     private String details;
 }

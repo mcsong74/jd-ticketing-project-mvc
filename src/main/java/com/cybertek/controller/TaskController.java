@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -30,15 +31,15 @@ public class TaskController {
     public String createTask(Model model) {
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projectlist", projectService.findAll());
-        model.addAttribute("employeelist", userService.findManagers());
+        model.addAttribute("employeelist", userService.findEmployees());
         model.addAttribute("tasklist", taskService.findAll());
         return "/task/create";
     }
 
     @PostMapping("/create")
     public String addTask(TaskDTO task, Model model) {
-        task.setTaskId("TASK-" + (taskService.findAll().stream().count() + 1l));
-        task.setAssignedDate(LocalDateTime.now());
+        task.setId((long) (taskService.findAll().size()+1));
+        task.setAssignedDate(LocalDate.now());
         taskService.save(task);
         task.setStatus(Status.OPEN);
 
@@ -47,12 +48,12 @@ public class TaskController {
 
     @GetMapping("/delete/{taskId}")
     public String deleteTask(TaskDTO task){
-        taskService.deleteById(task.getTaskId());
+        taskService.deleteById(task.getId());
         return "redirect:/task/create";
     }
 
     @GetMapping("/update/{taskId}")
-    public String editTask(@PathVariable("taskId") String taskId, Model model){
+    public String editTask(@PathVariable("taskId") Long taskId, Model model){
         model.addAttribute("task", taskService.findById(taskId));
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
@@ -60,7 +61,7 @@ public class TaskController {
         return "/task/update";
     }
     @PostMapping("/update/{taskId}")
-    public String editTask(@PathVariable("taskId")String taskId, TaskDTO task){
+    public String editTask(@PathVariable("taskId") Long taskId, TaskDTO task){
         task.setStatus(taskService.findById(taskId).getStatus());
         task.setAssignedDate(taskService.findById(taskId).getAssignedDate());
         taskService.updateByObj(task);

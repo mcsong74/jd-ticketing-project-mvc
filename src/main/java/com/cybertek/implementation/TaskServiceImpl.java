@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TaskServiceImpl extends AbstractMapService<TaskDTO, String> implements TaskService {
+public class TaskServiceImpl extends AbstractMapService<TaskDTO, Long> implements TaskService {
 
     @Override
     public List<TaskDTO> findAll() {
@@ -17,13 +17,13 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO, String> impleme
     }
 
     @Override
-    public void update(String taskId, TaskDTO object) {
-        super.update(taskId, object);
+    public void update(Long id, TaskDTO object) {
+        super.update(id, object);
     }
 
     @Override
-    public void deleteById(String taskId) {
-        super.deleteById(taskId);
+    public void deleteById(Long id) {
+        super.deleteById(id);
     }
 
     @Override
@@ -34,16 +34,16 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO, String> impleme
     @Override
     public TaskDTO save(TaskDTO object) {
 
-        return super.save(object.getTaskId(), object);
+        return super.save(object.getId(), object);
     }
 
     @Override
     public void updateByObj(TaskDTO object) {
-        super.updateByObj(object.getTaskId(), object);
+        super.updateByObj(object.getId(), object);
     }
 
     @Override
-    public TaskDTO findById(String taskId) {
-        return super.findById(taskId);
+    public TaskDTO findById(Long id) {
+        return super.findById(id);
     }
 }
