@@ -156,7 +156,7 @@
                                                         th:text="${#temporals.format(aProject.startDate, 'MM/dd/yyyy')
                                                         +'-'+#temporals.format(aProject.endDate, 'MM/dd/yyyy')}"></td>
                                                 <td th:text="${aProject.assignedManager.firstName+' '+aProject.assignedManager.lastName}"></td>
-                                                <td th:text="${aProject.projectStatus}"></td>
+                                                <td th:text="${aProject.projectStatus.getValue()}"></td>
                                                 <td>
                                                     <a th:href="@{/project/update/{projectcode}(projectcode=${aProject.projectCode})}"
                                                        class="btn btn-warning btn-sm rounded-0" >Update</a>
