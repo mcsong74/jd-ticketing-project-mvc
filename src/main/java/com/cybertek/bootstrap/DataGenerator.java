@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
@@ -41,16 +42,11 @@ public class DataGenerator implements CommandLineRunner {
         roleService.save(managerRole);
         roleService.save(employeeRole);
 
-        UserDTO user1 = new UserDTO("John", "Kesy",
-                "admin@cybertek.com", "abc", true, "7459684532", managerRole, Gender.MALE);
-        UserDTO user5 = new UserDTO("John", "Kesy",
-                "admin2@cybertek.com", "abc", true, "7459684532", adminRole, Gender.MALE);
-        UserDTO user2 = new UserDTO("Delisa",
-                "Norre", "T001@cybertek.com", "123", true, "8567412358", managerRole, Gender.FEMALE);
-        UserDTO user3 = new UserDTO("Craig", "Jark",
-                "P001@cybertek.com", "123", true, "7777775566", employeeRole, Gender.MALE);
-        UserDTO user4 = new UserDTO("Shaun",
-                "Hayns", "S001@cybertek.com", "123", true, "3256987412", employeeRole, Gender.MALE);
+        UserDTO user1 = new UserDTO("John", "Kesy", "admin@cybertek.com", "abc", true, "7459684532", managerRole, Gender.MALE);
+        UserDTO user5 = new UserDTO("John", "Kesy", "admin2@cybertek.com", "abc", true, "7459684532", adminRole, Gender.MALE);
+        UserDTO user2 = new UserDTO("Delisa", "Norre", "T001@cybertek.com", "123", true, "8567412358", managerRole, Gender.FEMALE);
+        UserDTO user3 = new UserDTO("Craig", "Jark", "P001@cybertek.com", "123", true, "7777775566", employeeRole, Gender.MALE);
+        UserDTO user4 = new UserDTO("Shaun", "Hayns", "S001@cybertek.com", "123", true, "3256987412", employeeRole, Gender.MALE);
 
         userService.save(user1);
         userService.save(user2);
@@ -68,11 +64,16 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project2);
         projectService.save(project3);
 
-        TaskDTO task1= new TaskDTO();
-        TaskDTO task2= new TaskDTO();
-        TaskDTO task3= new TaskDTO();
-        TaskDTO task4= new TaskDTO();
-        TaskDTO task5= new TaskDTO();
+        TaskDTO task1= new TaskDTO("Task001", project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18,12),
+                Status.IN_PROGRESS, "Task assigned for project 1");
+        TaskDTO task2= new TaskDTO("Task002", project2, "Server LAN Setting", user2, LocalDateTime.of(2020, 11, 02, 18,12),
+                Status.UAT_TEST  ,"Task assigned for project 1");
+        TaskDTO task3= new TaskDTO("Task003",project1, "REST Codes Development", user1, LocalDateTime.of(2020, 10, 18, 18, 12),
+                 Status.COMPLETE   ,"Task assigned for project 1");
+        TaskDTO task4= new TaskDTO("Task004",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
+                 Status.OPEN  ,"Task assigned for project 1");
+        TaskDTO task5= new TaskDTO("Task005",project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01, 18, 12),
+                 Status.COMPLETE ,"Task assigned for project 1");
 
 
         //        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));

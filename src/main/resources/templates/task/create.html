@@ -32,14 +32,18 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{/task/create}" method="post">
+                                    <form class="needs-validation" novalidate th:action="@{/task/create}" method="post"
+                                    th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
-                                                <select class="custom-select d-block w-100" id="project" required>
+                                                <select class="custom-select d-block w-100" id="project" name="project" required
+                                                    th:field="*{project}">
                                                     <option value="">Select ...</option>
-                                                    <option>Human Resource CRM</option>
-                                                    <option>Infra Update</option>
+                                                    <option th:each="project:${projectlist}"
+                                                    th:value="${project.projectCode}"
+                                                    th:text="${project.projectCode+' - '+project.projectName}"></option>
+                                                    
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a project.
@@ -47,13 +51,12 @@
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
-                                                <select class="custom-select d-block w-100 " id="assignEmployee" required>
+                                                <select class="custom-select d-block w-100 " id="assignEmployee" name="assignEmployee" required
+                                                    th:field="*{assignedEmployee}">
                                                     <option value="">Select ...</option>
-                                                    <option>Delisa Norre</option>
-                                                    <option>Jessica Lin</option>
-                                                    <option>John Kesy</option>
-                                                    <option>Mike Smith</option>
-                                                    <option>Ozzy</option>
+                                                    <option th:each="user:${employeelist}" th:value="${user.userName}"
+                                                    th:text="${user.firstName+' '+user.lastName+' ('+user.role.description+')'}"></option>
+                                                    
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select an employee to assign.
@@ -65,7 +68,8 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="taskSubject">Task Subject</label>
-                                                <input type="text" class="form-control" id="taskSubject" required>
+                                                <input type="text" class="form-control" id="taskSubject" required
+                                                th:field="*{taskSubject}">
                                                 <div class="invalid-feedback">
                                                    Please enter a task subject.
                                                 </div>
@@ -76,8 +80,8 @@
                                                 <div class="row">
                                                     <div class="col-md-12 mb-12">
                                                         <label for="details">Details</label>
-                                                        <textarea type="text" class="form-control" id="details"
-                                                                   required></textarea>
+                                                        <textarea type="text" class="form-control" id="details" required
+                                                            th:field="*{details}"></textarea>
                                                         <div class="invalid-feedback">
                                                             Please enter a details.
                                                         </div>
@@ -133,12 +137,12 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>Database Connection</td>
-                                                <td>John Kesy</td>
-                                                <td>11/01/2020 18:12</td>
-                                                <td>In Progress</td>
+                                            <tr th:each="task:${tasklist}">
+                                                <td th:text="${task.project.projectCode+' - '+task.project.projectName}"></td>
+                                                <td th:text="${task.taskSubject}">Database Connection</td>
+                                                <td th:text="${task.assignedEmployee.firstName+' '+task.assignedEmployee.lastName}"></td>
+                                                <td th:text="${task.assignedDate}"></td>
+                                                <td th:text="${task.status.getValue()}"></td>
                                                 <td>
                                                     <button class="btn btn-warning btn-sm" type="submit">Update</button>
                                                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
