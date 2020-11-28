@@ -2,6 +2,7 @@ package com.cybertek.controller;
 
 import com.cybertek.dto.ProjectDTO;
 import com.cybertek.dto.UserDTO;
+import com.cybertek.entity.Project;
 import com.cybertek.service.ProjectService;
 import com.cybertek.service.UserService;
 import com.cybertek.utils.Status;
@@ -51,6 +52,28 @@ public class ProjectController {
     public String deleteProject(@PathVariable("projectcode") String projectcode){
         projectService.deleteById(projectcode);
         return "redirect:/project/create";
+    }
+
+    @GetMapping("/update/{projectcode}")
+    public String editProject(@PathVariable("projectcode") String projectcode, Model model){
+        model.addAttribute("project", projectService.findById(projectcode));
+        model.addAttribute("managerlist", userService.findAll().stream()
+                .filter(user->user.getRole().getDescription().equals("Manager"))
+                .collect(Collectors.toList()));
+        model.addAttribute("projectlist", projectService.findAll());
+        return ("/project/update");
+    }
+
+    @PostMapping("/update/{projectcode}")
+    public String updateProject(@PathVariable("projectcode") String projectcode, ProjectDTO project, Model model){
+        projectService.updateByObj(projectService.findById(projectcode));
+
+        model.addAttribute("project", new ProjectDTO());
+        model.addAttribute("managerlist", userService.findAll().stream()
+                .filter(user->user.getRole().getDescription().equals("Manager"))
+                .collect(Collectors.toList()));
+        model.addAttribute("projectlist", projectService.findAll());
+        return "/project/create";
     }
 
     @GetMapping("/status")
