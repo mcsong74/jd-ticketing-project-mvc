@@ -32,9 +32,7 @@ public class TaskController {
     public String createTask(Model model) {
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projectlist", projectService.findAll());
-        model.addAttribute("employeelist", userService.findAll().stream()
-                .filter(user -> user.getRole().getDescription().equals("Employee"))
-                .collect(Collectors.toList()));
+        model.addAttribute("employeelist", userService.findManagers());
         model.addAttribute("tasklist", taskService.findAll());
         return "/task/create";
     }
@@ -59,9 +57,7 @@ public class TaskController {
     public String editTask(@PathVariable("taskId") String taskId, Model model){
         model.addAttribute("task", taskService.findById(taskId));
         model.addAttribute("projectlist", projectService.findAll());
-        model.addAttribute("employeelist", userService.findAll().stream()
-                .filter(user -> user.getRole().getDescription().equals("Employee"))
-                .collect(Collectors.toList()));
+        model.addAttribute("employeelist", userService.findEmployees());
         model.addAttribute("tasklist", taskService.findAll());
         return "/task/update";
     }

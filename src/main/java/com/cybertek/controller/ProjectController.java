@@ -57,9 +57,10 @@ public class ProjectController {
     @GetMapping("/update/{projectcode}")
     public String editProject(@PathVariable("projectcode") String projectcode, Model model){
         model.addAttribute("project", projectService.findById(projectcode));
-        model.addAttribute("managerlist", userService.findAll().stream()
-                .filter(user->user.getRole().getDescription().equals("Manager"))
-                .collect(Collectors.toList()));
+        model.addAttribute("managerlist", userService.findManagers());
+//        model.addAttribute("managerlist", userService.findAll().stream()
+//                .filter(user->user.getRole().getDescription().equals("Manager"))
+//                .collect(Collectors.toList()));
         model.addAttribute("projectlist", projectService.findAll());
         return "/project/update";
     }

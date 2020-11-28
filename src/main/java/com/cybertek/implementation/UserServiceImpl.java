@@ -2,12 +2,15 @@ package com.cybertek.implementation;
 
 import com.cybertek.dto.UserDTO;
 import com.cybertek.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl extends AbstractMapService<UserDTO, String> implements UserService {
+
 
     @Override
     public List<UserDTO> findAll() {
@@ -42,5 +45,19 @@ public class UserServiceImpl extends AbstractMapService<UserDTO, String> impleme
     @Override
     public UserDTO findById(String userId) {
         return super.findById(userId);
+    }
+
+    @Override
+    public List<UserDTO> findManagers() {
+        return super.findAll().stream()
+                .filter(user->user.getRole().getDescription().equals("Manager"))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDTO> findEmployees() {
+        return super.findAll().stream()
+                .filter(user -> user.getRole().getDescription().equals("Employee"))
+                .collect(Collectors.toList());
     }
 }
