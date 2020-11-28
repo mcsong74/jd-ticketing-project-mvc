@@ -56,7 +56,6 @@ public class ProjectController {
 
     @GetMapping("/update/{projectcode}")
     public String editProject(@PathVariable("projectcode") String projectcode, Model model){
-        System.out.println(projectcode);
         model.addAttribute("project", projectService.findById(projectcode));
         model.addAttribute("managerlist", userService.findAll().stream()
                 .filter(user->user.getRole().getDescription().equals("Manager"))
@@ -66,16 +65,19 @@ public class ProjectController {
     }
 
     @PostMapping("/update/{projectcode}")
-    public String updateProject(@PathVariable("projectcode") String projectcode, ProjectDTO project, Model model){
-        projectService.updateByObj(projectService.findById(projectcode));
+    public String updateProject(@PathVariable("projectcode") String projectcode, ProjectDTO project){
+        project.setProjectStatus(projectService.findById(projectcode).getProjectStatus());
+        projectService.updateByObj(project);
 
-        model.addAttribute("project", new ProjectDTO());
-        model.addAttribute("managerlist", userService.findAll().stream()
-                .filter(user->user.getRole().getDescription().equals("Manager"))
-                .collect(Collectors.toList()));
-        model.addAttribute("projectlist", projectService.findAll());
-        return "/project/create";
+//        model.addAttribute("project", new ProjectDTO());
+//        model.addAttribute("managerlist", userService.findAll().stream()
+//                .filter(user->user.getRole().getDescription().equals("Manager"))
+//                .collect(Collectors.toList()));
+//        model.addAttribute("projectlist", projectService.findAll());
+        return "redirect:/project/create";
     }
+
+
 
     @GetMapping("/status")
     public String projectStatus(){
