@@ -67,7 +67,7 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project2);
         projectService.save(project3);
 
-        TaskDTO task1= new TaskDTO("TASK-001", project1, "Database Connection", user1, LocalDateTime.of(2020, 11, 01,
+        TaskDTO task1= new TaskDTO("TASK-001", project1, "Database Connection", user4, LocalDateTime.of(2020, 11, 01,
                 18,12),
                 Status.IN_PROGRESS, "Task assigned for project 1");
         TaskDTO task2= new TaskDTO("TASK-002", project2, "Server LAN Setting", user2, LocalDateTime.of(2020, 11, 02, 18,12),

@@ -37,8 +37,7 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
-                                                <select class="custom-select d-block w-100" id="project" name="project"
-                                                        required
+                                                <select class="custom-select d-block w-100" id="project" name="project" required
                                                         th:field="*{project}">
                                                     <option value="">Select ...</option>
                                                     <option th:each="project:${projectlist}"
@@ -55,8 +54,7 @@
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
-                                                <select class="custom-select d-block w-100 " id="assignEmployee"
-                                                        name="assignEmployee" required
+                                                <select class="custom-select d-block w-100 " id="assignEmployee" name="assignEmployee" required
                                                         th:field="*{assignedEmployee}">
                                                     <option value="">Select ...</option>
                                                     <option th:each="user:${employeelist}" th:value="${user.userName}"
