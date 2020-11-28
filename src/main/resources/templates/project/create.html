@@ -160,7 +160,8 @@
                                                        class="btn btn-warning btn-sm rounded-0" >Update</a>
                                                     <a th:href="@{/project/delete/{projectcode}(projectcode=${aProject.projectCode})}"
                                                        class="btn btn-danger btn-sm rounded-0" type="submit">Delete</a>
-                                                    <a class="btn btn-info btn-sm rounded-0" type="submit">Complete</a>
+                                                    <a th:href="@{/project/complete/{projectcode}(projectcode=${aProject.projectCode})}"
+                                                       class="btn btn-info btn-sm rounded-0" type="submit">Complete</a>
                                                 
                                                 </td>
                                             </tr>

@@ -2,6 +2,7 @@ package com.cybertek.bootstrap;
 
 import com.cybertek.dto.ProjectDTO;
 import com.cybertek.dto.RoleDTO;
+import com.cybertek.dto.TaskDTO;
 import com.cybertek.dto.UserDTO;
 import com.cybertek.implementation.RoleServiceImpl;
 import com.cybertek.service.ProjectService;
@@ -66,6 +67,13 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project1);
         projectService.save(project2);
         projectService.save(project3);
+
+        TaskDTO task1= new TaskDTO();
+        TaskDTO task2= new TaskDTO();
+        TaskDTO task3= new TaskDTO();
+        TaskDTO task4= new TaskDTO();
+        TaskDTO task5= new TaskDTO();
+
 
         //        roleService.findAll().stream().forEach(r-> System.out.println(r.toString()));
 //        UserDTO user6 = new UserDTO("Delisa",
