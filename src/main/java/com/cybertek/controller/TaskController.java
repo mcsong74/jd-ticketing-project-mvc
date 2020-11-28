@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.stream.Collectors;
@@ -23,18 +24,27 @@ public class TaskController {
     TaskService taskService;
 
     @GetMapping("/create")
-    public String createTask(Model model){
+    public String createTask(Model model) {
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findAll().stream()
-                .filter(user->user.getRole().getDescription().equals("Employee"))
+                .filter(user -> user.getRole().getDescription().equals("Employee"))
                 .collect(Collectors.toList()));
         model.addAttribute("tasklist", taskService.findAll());
         return "/task/create";
     }
 
+    @PostMapping("/create")
+    public String addTask(TaskDTO task, Model model) {
+        task.setTaskId("TASK-" + taskService.findAll().stream().count() + 1);
+        taskService.save(task);
+
+        return "redirect:task/create";
+    }
+
+
     @GetMapping("/pending")
-    public String pendingTasks(){
+    public String pendingTasks() {
         return "/task/pending";
     }
 
