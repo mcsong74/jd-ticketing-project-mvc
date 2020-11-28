@@ -46,24 +46,24 @@ public class TaskController {
         return "redirect:/task/create";
     }
 
-    @GetMapping("/delete/{taskId}")
+    @GetMapping("/delete/{id}")
     public String deleteTask(TaskDTO task){
         taskService.deleteById(task.getId());
         return "redirect:/task/create";
     }
 
-    @GetMapping("/update/{taskId}")
-    public String editTask(@PathVariable("taskId") Long taskId, Model model){
-        model.addAttribute("task", taskService.findById(taskId));
+    @GetMapping("/update/{id}")
+    public String editTask(@PathVariable("id") Long id, Model model){
+        model.addAttribute("task", taskService.findById(id));
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
         model.addAttribute("tasklist", taskService.findAll());
         return "/task/update";
     }
-    @PostMapping("/update/{taskId}")
-    public String editTask(@PathVariable("taskId") Long taskId, TaskDTO task){
-        task.setStatus(taskService.findById(taskId).getStatus());
-        task.setAssignedDate(taskService.findById(taskId).getAssignedDate());
+    @PostMapping("/update/{id}")
+    public String editTask(@PathVariable("id") Long id, TaskDTO task){
+        task.setStatus(taskService.findById(id).getStatus());
+        task.setAssignedDate(taskService.findById(id).getAssignedDate());
         taskService.updateByObj(task);
 
         return "redirect:/task/create";

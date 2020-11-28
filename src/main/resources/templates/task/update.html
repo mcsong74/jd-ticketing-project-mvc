@@ -32,7 +32,8 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{/task/update/{taskId}(taskId=${task.taskId})}" method="post"
+                                    <form class="needs-validation" novalidate
+                                          th:action="@{/task/update/{id}(id=${task.id})}" method="post"
                                           th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
@@ -144,16 +145,16 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="task:${tasklist}">
-                                                <td th:text="${task.taskId}" hidden="true"></td>
+                                                <td th:text="${task.id}" hidden="true"></td>
                                                 <td th:text="${task.project.projectCode+' - '+task.project.projectName}"></td>
                                                 <td th:text="${task.taskSubject}"></td>
                                                 <td th:text="${task.assignedEmployee.firstName+' '+task.assignedEmployee.lastName}"></td>
                                                 <td th:text="${#temporals.format(task.assignedDate, 'MM/dd/yyyy hh:mm')}"></td>
                                                 <td th:text="${task.status.getValue()}"></td>
                                                 <td>
-                                                    <a th:href="@{/task/update/{taskId}(taskId=${task.taskId})}"
+                                                    <a th:href="@{/task/update/{id}(id=${task.id})}"
                                                        class="btn btn-warning btn-sm" type="submit">Update</a>
-                                                    <a th:href="@{/task/delete/{taskId}(taskId=${task.taskId})}"
+                                                    <a th:href="@{/task/delete/{id}(id=${task.id})}"
                                                        class="btn btn-danger btn-sm" type="submit">Delete
                                                     </a>
                                                 </td>

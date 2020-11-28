@@ -145,9 +145,9 @@
                                                 <td th:text="${#temporals.format(task.assignedDate, 'MM/dd/yyyy hh:mm')}"></td>
                                                 <td th:text="${task.status.getValue()}"></td>
                                                 <td>
-                                                    <a th:href="@{/task/update/{taskId}(taskId=${task.id})}"
+                                                    <a th:href="@{/task/update/{id}(id=${task.id})}"
                                                        class="btn btn-warning btn-sm" type="submit">Update</a>
-                                                    <a th:href="@{/task/delete/{taskId}(taskId=${task.id})}"
+                                                    <a th:href="@{/task/delete/{id}(id=${task.id})}"
                                                        class="btn btn-danger btn-sm" type="submit">Delete
                                                     </a>
                                                 </td>
