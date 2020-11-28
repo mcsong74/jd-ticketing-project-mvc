@@ -56,12 +56,13 @@ public class ProjectController {
 
     @GetMapping("/update/{projectcode}")
     public String editProject(@PathVariable("projectcode") String projectcode, Model model){
+        System.out.println(projectcode);
         model.addAttribute("project", projectService.findById(projectcode));
         model.addAttribute("managerlist", userService.findAll().stream()
                 .filter(user->user.getRole().getDescription().equals("Manager"))
                 .collect(Collectors.toList()));
         model.addAttribute("projectlist", projectService.findAll());
-        return ("/project/update");
+        return "/project/update";
     }
 
     @PostMapping("/update/{projectcode}")

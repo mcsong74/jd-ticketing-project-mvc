@@ -33,7 +33,7 @@
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <form class="needs-validation" novalidate
-                                          th:action="@{project/update/{projectcode}(projectcode=${project.projectCode})}"
+                                          th:action="@{/project/update/{projectcode}(projectcode=${project.projectCode})}"
                                           method="post" th:object="${project}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
@@ -57,12 +57,13 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="role">Assigned Manager</label>
-                                                <select class="custom-select d-block w-100" id="role" required
-                                                        name="role" th:field="*{assignedManager}">
+                                                <select class="custom-select d-block w-100" id="role" name="role"
+                                                        th:field="*{assignedManager}" required>
                                                     <option value="">Select ...</option>
                                                     <option th:each="manager:${managerlist}"
                                                             th:value="${manager.userName}"
-                                                            th:text="${manager.firstName+' '+manager.lastName}">
+                                                            th:text="${manager.firstName+' '+manager.lastName}"
+                                                            th:selected="${manager.userName.equals(project.assignedManager.userName)}">
                                                     </option>
                                                 </select>
                                                 <div class="invalid-feedback">
@@ -157,8 +158,8 @@
                                                 <td th:text="${aProject.assignedManager.firstName+' '+aProject.assignedManager.lastName}"></td>
                                                 <td th:text="${aProject.projectStatus}"></td>
                                                 <td>
-                                                    <a th:href="@{project/update/{projectcode}(projectcode=${aProject.projectCode})}"
-                                                       class="btn btn-warning btn-sm rounded-0" type="submit">Update</a>
+                                                    <a th:href="@{/project/update/{projectcode}(projectcode=${aProject.projectCode})}"
+                                                       class="btn btn-warning btn-sm rounded-0" >Update</a>
                                                     <a th:href="@{/project/delete/{projectcode}(projectcode=${aProject.projectCode})}"
                                                        class="btn btn-danger btn-sm rounded-0" type="submit">Delete</a>
                                                     <a class="btn btn-info btn-sm rounded-0" type="submit">Complete</a>
