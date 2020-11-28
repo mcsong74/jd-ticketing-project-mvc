@@ -65,7 +65,14 @@ public class TaskController {
         model.addAttribute("tasklist", taskService.findAll());
         return "/task/update";
     }
+    @PostMapping("/update/{taskId}")
+    public String editTask(@PathVariable("taskId")String taskId, TaskDTO task){
+        task.setStatus(taskService.findById(taskId).getStatus());
+        task.setAssignedDate(taskService.findById(taskId).getAssignedDate());
+        taskService.updateByObj(task);
 
+        return "redirect:/task/create";
+    }
     @GetMapping("/pending")
     public String pendingTasks() {
         return "/task/pending";
