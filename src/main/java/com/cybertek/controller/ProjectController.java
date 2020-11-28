@@ -66,7 +66,7 @@ public class ProjectController {
 
     @PostMapping("/update/{projectcode}")
     public String updateProject(@PathVariable("projectcode") String projectcode, ProjectDTO project){
-        project.setProjectStatus(projectService.findById(projectcode).getProjectStatus());
+//        project.setProjectStatus(projectService.findById(projectcode).getProjectStatus()); //implemented to service
         projectService.updateByObj(project);
         //redirect replaced below commented
 //        model.addAttribute("project", new ProjectDTO());
