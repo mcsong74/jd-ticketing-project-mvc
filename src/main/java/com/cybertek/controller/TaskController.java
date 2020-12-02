@@ -65,7 +65,7 @@ public class TaskController {
         return "/task/update";
     }
     @PostMapping("/update/{id}")
-    public String editTask(@PathVariable("id") Long id, TaskDTO task){
+    public String editTask(TaskDTO task){
 //        task.setStatus(taskService.findById(id).getStatus());     //implemented to TaskServiceImpl
 //        task.setAssignedDate(taskService.findById(id).getAssignedDate()); //implemented to TaskServiceImpl
         taskService.updateByObj(task);
