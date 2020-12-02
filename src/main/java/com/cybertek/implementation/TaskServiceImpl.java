@@ -42,6 +42,7 @@ public class TaskServiceImpl extends AbstractMapService<TaskDTO, Long> implement
         TaskDTO existingTask=findById(object.getId());
         object.setAssignedDate(existingTask.getAssignedDate());
         object.setStatus(existingTask.getStatus());
+        object.setDetails(existingTask.getDetails());
 
         super.updateByObj(object.getId(), object);
     }
