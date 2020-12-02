@@ -84,9 +84,13 @@ public class ProjectController {
         return "redirect:/project/create";
     }
 
+
     @GetMapping("/manager/complete")
     public String getProjectByManager(Model model){
-        List<ProjectDTO> projects=projectService.findAll();
+
+        List<ProjectDTO> projects=projectService.findAll().stream()
+                .filter(p->p.getAssignedManager().equals(userService.findById("john@cybertek.com")))
+                .collect(Collectors.toList());
         model.addAttribute("projects", projects);
         return "/manager/project-status";
     }
