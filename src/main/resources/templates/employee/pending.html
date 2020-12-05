@@ -53,13 +53,12 @@
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
                                                 <select class="custom-select d-block w-100 " id="assignEmployee"
-                                                        th:field="*{}">
+                                                        th:field="*{assignedEmployee}">
                                                     <option value="">Select ...</option>
-                                                    <option>Delisa Norre</option>
-                                                    <option>Jessica Lin</option>
-                                                    <option>John Kesy</option>
-                                                    <option>Mike Smith</option>
-                                                    <option>Ozzy</option>
+                                                    <option th:each="employee:${employeelist}"
+                                                    th:value="${employee.userName}"
+                                                    th:text="${employee.firstName+' '+employee.lastName}"></option>
+                                                  
                                                 </select>
         
                                             </div>
@@ -69,7 +68,7 @@
                                             <div class="col-md-12 mb-12">
                                                 <label for="taskSubject">Task Subject</label>
                                                 <input type="text" class="form-control" id="taskSubject" placeholder=""
-                                                       value="" readonly>
+                                                        th:field="*{taskSubject}">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -79,7 +78,7 @@
                                                         <label  for="details">Details</label>
                                                         <textarea type="text" class="form-control" id="details"
                                                                   placeholder=""
-                                                                  value="" readonly></textarea>
+                                                                   th:field="*{details}"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,12 +86,14 @@
                                         <div class=" row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="status">Status</label>
-                                                <select class="custom-select d-block w-100 " id="status" required>
+                                                <select class="custom-select d-block w-100 " id="status"
+                                                        name="status " required
+                                                th:field="*{status}">
                                                     <option value="">Select ...</option>
-                                                    <option>Open</option>
-                                                    <option>In Progress</option>
-                                                    <option>Completed</option>
-                                                    <option>Closed</option>
+                                                    <option th:each="status:${T(com.cybertek.utils.Status).values()}"
+                                                    th:value="${status}"
+                                                    th:text="${status.value}"></option>
+                                                    
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Status is required field, please select Status.
@@ -147,37 +148,18 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>Database Connection</td>
-                                                <td>John Kesy</td>
-                                                <td>11/01/2020 18:12</td>
-                                                <td>In Progress</td>
+                                            <tr th:each="task:${tasklist}">
+                                                <td th:text="${task.project.projectCode+' - '+task.project.projectName}"></td>
+                                                <td th:text="${task.taskSubject}"></td>
+                                                <td th:text="${task.assignedEmployee.firstName+' '+task.assignedEmployee.lastName}"></td>
+                                                <td th:text="${task.assignedDate}"></td>
+                                                <td th:text="${task.status}"></td>
                                                 <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
+                                                    <a href="" class="btn btn-warning btn-sm" type="submit">Update</a>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>General Analysis</td>
-                                                <td>John Kesy</td>
-                                                <td>10/18/2020 18:12</td>
-                                                <td>Open</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>Deployment Activities - Docker</td>
-                                                <td>John Kesy</td>
-                                                <td>10/23/2020 18:12</td>
-                                                <td>In Progress</td>
-                                                <td>
-                                                    <button class="btn btn-warning btn-sm" type="submit">Update</button>
-                                                </td>
-                                            </tr>
-                                            </tbody>
+                                            
+                                            
                                         </table>
                                     </div>
                                 </div>

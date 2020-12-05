@@ -80,6 +80,7 @@ public class TaskController {
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
         model.addAttribute("statuslist", roleService.findAll());
+        model.addAttribute("tasklist", taskService.findAll());
         return "/employee/pending";
     }
 
