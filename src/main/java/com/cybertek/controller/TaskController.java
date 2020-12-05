@@ -100,8 +100,9 @@ public class TaskController {
         return "/employee/pending-tasks";
     }
 
-    @GetMapping("/archived")
-    public String archived(){
+    @GetMapping("/employee/archived")
+    public String archived(Model model){
+        model.addAttribute("tasklist", taskService.findAll());
         return "/employee/archived";
     }
 

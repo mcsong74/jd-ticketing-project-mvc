@@ -73,22 +73,14 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>PRJ001 - Human Resource CRM</td>
-                                                <td>REST Codes Development</td>
-                                                <td>John Kesy</td>
-                                                <td>10/18/2020 18:12</td>
-                                                <td>Completed</td>
-
+                                            <tr th:each="task:${tasklist}">
+                                                <td th:text="${task.project.projectCode+' '+task.project.projectName}"></td>
+                                                <td th:text="${task.taskSubject}"></td>
+                                                <td th:text="${task.assignedEmployee}"></td>
+                                                <td th:text="${task.assignedDate}"></td>
+                                                <td th:text="${task.status.value}"></td>
                                             </tr>
-                                            <tr>
-                                                <td>PRJ002 - Infra Update</td>
-                                                <td>Environment Setup</td>
-                                                <td>John Kesy</td>
-                                                <td>10/11/2020 18:12</td>
-                                                <td>Completed</td>
-
-                                            </tr>
+                                            
                                             </tbody>
                                         </table>
                                     </div>
