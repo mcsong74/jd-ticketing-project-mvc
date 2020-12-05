@@ -83,7 +83,21 @@ public class TaskController {
         model.addAttribute("tasklist", taskService.findAll());
         return "/employee/pending";
     }
+    @GetMapping("/pending/update/{id}")
+    public String editPendingTask(@PathVariable("id") Long id, Model model){
+        model.addAttribute("task", taskService.findById(id));
+        model.addAttribute("projectlist", projectService.findAll());
+        model.addAttribute("employeelist", userService.findEmployees());
+        model.addAttribute("statuslist", roleService.findAll());
+        model.addAttribute("tasklist", taskService.findAll());
+        return "/employee/update";
+    }
+    @PostMapping("/pending/update/{id}")
+    public String updatePendingTask(@PathVariable("id") Long id, TaskDTO task){
+        taskService.updateByObj(task);
 
+        return "redirect:/employee/pending";
+    }
 
     @GetMapping("/archived")
     public String archived(){

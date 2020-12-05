@@ -32,23 +32,23 @@
                                 <div class="panel-body">
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form class="needs-validation" novalidate th:action="@{/task/pending}"
+                                    <form class="needs-validation" novalidate
+                                          th:action="@{/task/pending/update{id}(id=${task.id})}"
                                           method="post" th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
                                                 <select class="custom-select d-block w-100" id="project" name="project"
-                                                        required=""
-                                                        th:field="*{project}" disabled>
+                                                        required th:field="*{project}" disabled>
                                                     <option value="">Select ...</option>
                                                     <option th:each="project:${projectlist}"
                                                             th:value="${project.projectCode}"
                                                             th:text="${project.projectCode +' - '+project.projectName}">
-                                                        
-                                                    </option>
                                                     
+                                                    </option>
+                                                
                                                 </select>
-        
+                                            
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
@@ -56,19 +56,19 @@
                                                         th:field="*{assignedEmployee}" disabled>
                                                     <option value="">Select ...</option>
                                                     <option th:each="employee:${employeelist}"
-                                                    th:value="${employee.userName}"
-                                                    th:text="${employee.firstName+' '+employee.lastName}"></option>
-                                                  
+                                                            th:value="${employee.userName}"
+                                                            th:text="${employee.firstName+' '+employee.lastName}"></option>
+                                                
                                                 </select>
-        
+                                            
                                             </div>
                                         </div>
-    
+                                        
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="taskSubject">Task Subject</label>
                                                 <input type="text" class="form-control" id="taskSubject" placeholder=""
-                                                        th:field="*{taskSubject}" readonly>
+                                                       th:field="*{taskSubject}" readonly>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -89,14 +89,14 @@
                                                         name="status " required th:field="*{status}" >
                                                     <option value="">Select ...</option>
                                                     <option th:each="status:${T(com.cybertek.utils.Status).values()}"
-                                                    th:value="${status}"
-                                                    th:text="${status.value}"></option>
-                                                    
+                                                            th:value="${status}"
+                                                            th:text="${status.value}"></option>
+                                                
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Status is required field, please select Status.
                                                 </div>
-        
+                                            
                                             </div>
                                         </div>
                                         <br>
@@ -153,13 +153,12 @@
                                                 <td th:text="${task.status}"></td>
                                                 <td>
                                                     <a th:href="@{/task/pending/update/{id}(id=${task.id})}"
-                                                       class="btn btn-warning btn-sm"
-                                                       type="submit">Update
+                                                       class="btn btn-warning btn-sm" type="submit">Update
                                                     </a>
                                                 </td>
                                             </tr>
-                                            
-                                            
+                                        
+                                        
                                         </table>
                                     </div>
                                 </div>
