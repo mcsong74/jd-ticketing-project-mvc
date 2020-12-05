@@ -33,13 +33,13 @@
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <form class="needs-validation" novalidate
-                                          th:action="@{/task/pending/update{id}(id=${task.id})}"
+                                          th:action="@{/task/pending/update/{id}(id=${task.id})}"
                                           method="post" th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
                                                 <select class="custom-select d-block w-100" id="project" name="project"
-                                                        required th:field="*{project}" disabled>
+                                                        required th:field="*{project}" >
                                                     <option value="">Select ...</option>
                                                     <option th:each="project:${projectlist}"
                                                             th:value="${project.projectCode}"
@@ -53,7 +53,7 @@
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
                                                 <select class="custom-select d-block w-100 " id="assignEmployee"
-                                                        th:field="*{assignedEmployee}" disabled>
+                                                        th:field="*{assignedEmployee}" >
                                                     <option value="">Select ...</option>
                                                     <option th:each="employee:${employeelist}"
                                                             th:value="${employee.userName}"

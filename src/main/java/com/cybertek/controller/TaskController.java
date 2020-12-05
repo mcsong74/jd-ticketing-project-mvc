@@ -75,7 +75,7 @@ public class TaskController {
         return "redirect:/task/create";
     }
     @GetMapping("/pending")
-    public String pendingTasks(TaskDTO taskDTO, Model model) {
+    public String pendingTasks(Model model) {
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
@@ -93,7 +93,8 @@ public class TaskController {
         return "/employee/update";
     }
     @PostMapping("/pending/update/{id}")
-    public String updatePendingTask(@PathVariable("id") Long id, TaskDTO task){
+    public String updatePendingTask(TaskDTO task){
+        System.out.println(task.toString());
         taskService.updateByObj(task);
 
         return "redirect:/employee/pending";
