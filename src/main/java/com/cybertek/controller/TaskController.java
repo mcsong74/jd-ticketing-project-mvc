@@ -97,11 +97,11 @@ public class TaskController {
     public String updatePendingTask(TaskDTO task, Model model) {
         taskService.findById(task.getId()).setStatus(task.getStatus());
 
-        model.addAttribute("task", new TaskDTO());
-        model.addAttribute("projectlist", projectService.findAll());
-        model.addAttribute("employeelist", userService.findEmployees());
-        model.addAttribute("tasklist", taskService.findTasksByEmployee(userService.findById("bill@cybertek.com")));
-        return "redirect/employee/pending-tasks";
+//        model.addAttribute("task", new TaskDTO());
+//        model.addAttribute("projectlist", projectService.findAll());
+//        model.addAttribute("employeelist", userService.findEmployees());
+//        model.addAttribute("tasklist", taskService.findTasksByEmployee(userService.findById("bill@cybertek.com")));
+        return "redirect:/employee/pending";
     }
 
     @GetMapping("/employee/archived")
