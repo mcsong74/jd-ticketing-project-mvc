@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -77,7 +78,7 @@ public class TaskController {
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
-        model.addAttribute("tasklist", taskService.findAll());
+        model.addAttribute("tasklist", taskService.findTasksByEmployee(userService.findById("bill@cybertek.com")));
         return "/employee/pending-tasks";
     }
     @GetMapping("/employee/update/{id}")
@@ -85,18 +86,18 @@ public class TaskController {
         model.addAttribute("task", taskService.findById(id));
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
-        model.addAttribute("tasklist", taskService.findAll());
+        model.addAttribute("tasklist", taskService.findTasksByEmployee(userService.findById("bill@cybertek.com")));
         return "/employee/update";
     }
     @PostMapping("/employee/update/{id}")
-    public String updatePendingTask(TaskDTO task){
+    public String updatePendingTask(TaskDTO task, Model model){
         taskService.findById(task.getId()).setStatus(task.getStatus());
 
-//        model.addAttribute("task", new TaskDTO());
-//        model.addAttribute("projectlist", projectService.findAll());
-//        model.addAttribute("employeelist", userService.findEmployees());
-//        model.addAttribute("tasklist", taskService.findAll());
-        return "redirect:/employee/pending-task";
+        model.addAttribute("task", new TaskDTO());
+        model.addAttribute("projectlist", projectService.findAll());
+        model.addAttribute("employeelist", userService.findEmployees());
+        model.addAttribute("tasklist", taskService.findTasksByEmployee(userService.findById("bill@cybertek.com")));
+        return "/employee/pending-tasks";
     }
 
     @GetMapping("/archived")
