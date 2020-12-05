@@ -33,22 +33,27 @@
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <form class="needs-validation" novalidate th:action="@{/task/pending}"
-                                          method="post">
+                                          method="post" th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
                                                 <label for="project">Project</label>
-                                                <select class="custom-select d-block w-100" id="project" required=""
-                                                        disabled>
+                                                <select class="custom-select d-block w-100" id="project" name="project"
+                                                        required=""
+                                                        th:field="*{project}">
                                                     <option value="">Select ...</option>
-                                                    <option>Human Resource CRM</option>
-                                                    <option>Infra Update</option>
+                                                    <option th:each="project:${projectlist}"
+                                                            th:value="${project.projectCode}"
+                                                            th:text="${project.projectCode +' - '+project.projectName}">
+                                                        
+                                                    </option>
+                                                    
                                                 </select>
         
                                             </div>
                                             <div class="col-md-12 mb-12">
                                                 <label for="assignEmployee">Assigned Employee</label>
                                                 <select class="custom-select d-block w-100 " id="assignEmployee"
-                                                        disabled>
+                                                        th:field="*{}">
                                                     <option value="">Select ...</option>
                                                     <option>Delisa Norre</option>
                                                     <option>Jessica Lin</option>

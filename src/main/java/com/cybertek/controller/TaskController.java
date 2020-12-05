@@ -2,6 +2,7 @@ package com.cybertek.controller;
 
 import com.cybertek.dto.TaskDTO;
 import com.cybertek.service.ProjectService;
+import com.cybertek.service.RoleService;
 import com.cybertek.service.TaskService;
 import com.cybertek.service.UserService;
 import com.cybertek.utils.Status;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 
@@ -27,6 +27,8 @@ public class TaskController {
     UserService userService;
     @Autowired
     TaskService taskService;
+    @Autowired
+    RoleService roleService;
 
     @GetMapping("/create")
     public String createTask(Model model) {
@@ -73,9 +75,14 @@ public class TaskController {
         return "redirect:/task/create";
     }
     @GetMapping("/pending")
-    public String pendingTasks() {
-        return "/task/pending";
+    public String pendingTasks(TaskDTO taskDTO, Model model) {
+        model.addAttribute("task", new TaskDTO());
+        model.addAttribute("projectlist", projectService.findAll());
+        model.addAttribute("employeelist", userService.findEmployees());
+        model.addAttribute("statuslist", roleService.findAll());
+        return "/employee/pending";
     }
+
 
 
 }
