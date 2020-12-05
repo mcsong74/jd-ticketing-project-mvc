@@ -125,10 +125,6 @@ public class ProjectController {
 
 
 
-    @GetMapping("/archived")
-    public String archived(){
-        return "/project/archived";
-    }
 
 
 

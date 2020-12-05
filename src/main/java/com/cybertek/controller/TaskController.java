@@ -85,5 +85,9 @@ public class TaskController {
     }
 
 
+    @GetMapping("/archived")
+    public String archived(){
+        return "/employee/archived";
+    }
 
 }
