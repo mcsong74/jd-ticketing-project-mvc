@@ -101,7 +101,7 @@ public class TaskController {
 //        model.addAttribute("projectlist", projectService.findAll());
 //        model.addAttribute("employeelist", userService.findEmployees());
 //        model.addAttribute("tasklist", taskService.findTasksByEmployee(userService.findById("bill@cybertek.com")));
-        return "redirect:/employee/pending";
+        return "redirect:/task/employee/pending";
     }
 
     @GetMapping("/employee/archived")
