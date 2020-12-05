@@ -33,7 +33,7 @@
                                     
                                     <!-- ------------------------FORM START----------------------------- -->
                                     <form class="needs-validation" novalidate
-                                          th:action="@{/task/pending/update/{id}(id=${task.id})}"
+                                          th:action="@{/task/employee/update/{id}(id=${task.id})}"
                                           method="post" th:object="${task}">
                                         <div class="row">
                                             <div class="col-md-12 mb-12">
@@ -90,7 +90,7 @@
                                                     <option value="">Select ...</option>
                                                     <option th:each="status:${T(com.cybertek.utils.Status).values()}"
                                                             th:value="${status}"
-                                                            th:text="${status.value}"></option>
+                                                            th:text="${status.getValue()}"></option>
                                                 
                                                 </select>
                                                 <div class="invalid-feedback">
@@ -150,9 +150,9 @@
                                                 <td th:text="${task.taskSubject}"></td>
                                                 <td th:text="${task.assignedEmployee.firstName+' '+task.assignedEmployee.lastName}"></td>
                                                 <td th:text="${task.assignedDate}"></td>
-                                                <td th:text="${task.status}"></td>
+                                                <td th:text="${task.status.value}"></td>
                                                 <td>
-                                                    <a th:href="@{/task/pending/update/{id}(id=${task.id})}"
+                                                    <a th:href="@{/task/employee/update/{id}(id=${task.id})}"
                                                        class="btn btn-warning btn-sm" type="submit">Update
                                                     </a>
                                                 </td>

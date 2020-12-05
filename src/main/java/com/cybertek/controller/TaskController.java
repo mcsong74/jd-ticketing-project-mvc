@@ -2,7 +2,6 @@ package com.cybertek.controller;
 
 import com.cybertek.dto.TaskDTO;
 import com.cybertek.service.ProjectService;
-import com.cybertek.service.RoleService;
 import com.cybertek.service.TaskService;
 import com.cybertek.service.UserService;
 import com.cybertek.utils.Status;
@@ -27,8 +26,7 @@ public class TaskController {
     UserService userService;
     @Autowired
     TaskService taskService;
-    @Autowired
-    RoleService roleService;
+
 
     @GetMapping("/create")
     public String createTask(Model model) {
@@ -74,30 +72,31 @@ public class TaskController {
 
         return "redirect:/task/create";
     }
-    @GetMapping("/pending")
+    @GetMapping("/employee/pending")
     public String pendingTasks(Model model) {
         model.addAttribute("task", new TaskDTO());
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
-        model.addAttribute("statuslist", roleService.findAll());
         model.addAttribute("tasklist", taskService.findAll());
-        return "/employee/pending";
+        return "/employee/pending-tasks";
     }
-    @GetMapping("/pending/update/{id}")
+    @GetMapping("/employee/update/{id}")
     public String editPendingTask(@PathVariable("id") Long id, Model model){
         model.addAttribute("task", taskService.findById(id));
         model.addAttribute("projectlist", projectService.findAll());
         model.addAttribute("employeelist", userService.findEmployees());
-        model.addAttribute("statuslist", roleService.findAll());
         model.addAttribute("tasklist", taskService.findAll());
         return "/employee/update";
     }
-    @PostMapping("/pending/update/{id}")
+    @PostMapping("/employee/update/{id}")
     public String updatePendingTask(TaskDTO task){
-        System.out.println(task.toString());
-        taskService.updateByObj(task);
+        taskService.findById(task.getId()).setStatus(task.getStatus());
 
-        return "redirect:/employee/pending";
+//        model.addAttribute("task", new TaskDTO());
+//        model.addAttribute("projectlist", projectService.findAll());
+//        model.addAttribute("employeelist", userService.findEmployees());
+//        model.addAttribute("tasklist", taskService.findAll());
+        return "redirect:/employee/pending-task";
     }
 
     @GetMapping("/archived")
